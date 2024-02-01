@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Calculator</title>
+  <style>
+    body {
+      background-color: skyblue;
+      text-align: center;
+      font-size: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Calculator</h1>
+  <input type="text" id="result" disabled>
+  <br>
+  <button onclick="insertNumber(7)">7</button>
+  <button onclick="insertNumber(8)">8</button>
+  <button onclick="insertNumber(9)">9</button>
+  <button onclick="add()">+</button>
+  <br>
+  <button onclick="insertNumber(4)">4</button>
+  <button onclick="insertNumber(5)">5</button>
+  <button onclick="insertNumber(6)">6</button>
+  <button onclick="subtract()">-</button>
+  <br>
+  <button onclick="insertNumber(1)">1</button>
+  <button onclick="insertNumber(2)">2</button>
+  <button onclick="insertNumber(3)">3</button>
+  <button onclick="multiply()">*</button>
+  <br>
+  <button onclick="clearResult()">C</button>
+  <button onclick="insertNumber(0)">0</button>
+  <button onclick="calculate()">=</button>
+  <button onclick="divide()">/</button>
+  <br>
+  <script>
+    let num1 = null;
+    let num2 = null;
+    let operator = null;
+
+    function insertNumber(num) {
+      const result = document.getElementById("result");
+      if (result.value === "0") {
+        result.value = num.toString();
+      } else {
+        result.value += num.toString();
+      }
+    }
+
+    function add() {
+      num1 = parseFloat(document.getElementById("result").value);
+      operator = "+";
+      document.getElementById("result").value = "";
+    }
+
+    function subtract() {
+      num1 = parseFloat(document.getElementById("result").value);
+      operator = "-";
+      document.getElementById("result").value = "";
+    }
+
+    function multiply() {
+      num1 = parseFloat(document.getElementById("result").value);
+      operator = "*";
+      document.getElementById("result").value = "";
+    }
+
+    function divide() {
+      num1 = parseFloat(document.getElementById("result").value);
+      operator = "/";
+      document.getElementById("result").value = "";
+    }
+
+    function clearResult() {
+      document.getElementById("result").value = "0";
+      num1 = null;
+      num2 = null;
+      operator = null;
+    }
+
+    function calculate() {
+      if (num1 !== null && operator !== null) {
+        num2 = parseFloat(document.getElementById("result").value);
+        let result = null;
+        if (operator === "+") {
+          result = num1 + num2;
+        } else if (operator === "-") {
+          result = num1 - num2;
+        } else if (operator === "*") {
+          result = num1 * num2;
+        } else if (operator === "/") {
+          result = num1 / num2;
+        }
+        document.getElementById("result").value = result;
+        num1 = null;
+        num2 = null;
+        operator = null;
+      }
+    }
+  </script>
+</body>
+
+</html>
